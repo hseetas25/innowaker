@@ -47,7 +47,7 @@ export class RegistrationComponent implements OnInit {
         this.isLoggedIn = false;
         this.isReqSubmitted = false;
         this.isReqSent = false;
-        //this.isLoggedIn();
+        this.loggedIn();
    }
 
   ngOnInit(): void {
@@ -83,6 +83,12 @@ export class RegistrationComponent implements OnInit {
       console.log(data);
     });
     window.location.reload();
+  }
+
+  loggedIn(): void {
+    if (localStorage.getItem('login') == "success") {
+        this.isLoggedIn = true;
+    }
   }
 
   resetLoginForm(): void {

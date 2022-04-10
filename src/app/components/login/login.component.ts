@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { exit } from 'process';
 
 @Component({
   selector: 'app-login',
@@ -35,18 +35,20 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private firestore: AngularFirestore,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
         this.isFormSubmitted = false;
         this.isRequestInProgress = false;
         this.isLoggedIn = false;
         this.isReqSubmitted = false;
         this.isReqSent = false;
-        //this.loggedIn();
+        this.loggedIn();
    }
 
   ngOnInit(): void {
     this.initializeForm();
+    this.loggedIn();
   }
 
   initializeForm(): void{
@@ -76,8 +78,9 @@ export class LoginComponent implements OnInit {
             const userDb: any = data.payload.doc.data();
             if(userDb.userEmail == userData.userEmail && userDb.password == userData.password) {
               console.log("Login Success");
-              localStorage.setItem('login', 'success')
+              localStorage.setItem('login', 'success');
               window.location.reload();
+              
             }
           });
           console.log("Login Unsuccess")
@@ -87,8 +90,13 @@ export class LoginComponent implements OnInit {
           //sub.next({isSuccessful: false, phoneData: null, reason: 'No Data'});
         }
       })
-      
       //window.location.reload();
+    }
+    loggedIn(): void {
+      if (localStorage.getItem('login') == "success") {
+          this.isLoggedIn = true;
+          this.router.navigate(['/home']);
+      }
     }
 
     resetLoginForm(): void {

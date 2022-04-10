@@ -1,4 +1,4 @@
-<div class="container formcon">
+<div *ngIf="isLoggedIn"class="container formcon">
     <form #ref="ngForm" (ngSubmit) = 'getData(ref)'>
         Remainder
         <div>
@@ -9,23 +9,24 @@
         </div>
         <div>
             <input type="datetime-local" name="dt" id="dt" placeholder="date" ngModel>
+            <input type="text" name="id" id="dt" placeholder="date" ngModel hidden>
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
 <div class="container mt-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div *ngFor = 'let n of ar'>
+        <div *ngFor="let todo of toDoData">
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="text-align : center">{{n[0]}}</h4>
-                        <button class ="btn1"(click) = 'delete(n[4])'><span>X</span></button>
+                        <h4 class="text-align : center">{{todo.work}}</h4>
+                        <button class ="btn1" (click) ="delete(todo.id)" ><span>X</span></button>
                     </div>
                     <div class="card-body">
-                        <h5>{{n[1]}}</h5>
+                        <h5>{{todo.desc}}</h5>
                         <br>
-                        Trigger's at {{n[2]}},{{n[3]}}
+                        <h6>Triggers at {{todo.dt.replace('T', ' ')}}</h6>
                     </div>
                 </div>
             </div>

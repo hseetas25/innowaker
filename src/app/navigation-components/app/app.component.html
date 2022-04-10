@@ -7,9 +7,10 @@
       <div class="collapse navbar-collapse" id="nb">
         <div class="navbar-nav">
             <a class="nav-link" routerLink="home" routerLinkActive="active">Home</a>
-            <a class="nav-link" routerLink="features" routerLinkActive="active">Features</a>
-            <a class="nav-link" routerLink="register" routerLinkActive="active">Register</a>
-            <a class="nav-link" routerLink="login" routerLinkActive="active">Login</a>
+            <a class="nav-link" routerLink="features" *ngIf="isLoggedIn" routerLinkActive="active">Features</a>
+            <a class="nav-link" routerLink="register" *ngIf="!isLoggedIn"routerLinkActive="active">Register</a>
+            <a class="nav-link" routerLink="login" *ngIf="!isLoggedIn"routerLinkActive="active">Login</a>
+            <a class="nav-link"  *ngIf="isLoggedIn"routerLinkActive="active" (click)="logOut()">Logout</a>
         </div>
       </div>
     </div>
