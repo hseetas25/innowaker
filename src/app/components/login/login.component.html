@@ -1,43 +1,46 @@
-<section class="vh-80 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-      <div class="container h-80">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+<section class="section-body">
+    <div class="mask align-items-center">
+      <div class="container">
+        <div class="row  justify-content-center align-items-center">
           <div class="col-12 col-md-9 col-lg-7 col-xl-6">
             <div class="card" style="border-radius: 15px;">
               <div class="card-body p-5">
-                <h2 class="text-uppercase text-center mb-5">Login</h2>
+                <h2 class="text-uppercase text-center mt-5 mb-5">Login</h2>
                 <form [formGroup]="loginForm">
-                    <div class="form-group">
-                        <label class="fw-bold">
-                            Email
-                            <span class="mandatory"> *</span>
-                        </label>
-                        <input type="text"
+                    <div class=" form-floating">
+                      <input type="email"
                             class="form-control"
                             formControlName="userEmail"
                             autocomplete="off"
+                            placeholder="abc@gmail.com"
                             [class.border-danger]="loginForm.get('userEmail').invalid && (loginForm.get('userEmail').dirty || loginForm.get('userEmail').touched || isFormSubmitted)"/>
                             <div *ngFor="let validation of validationMessages.userEmail">
                                 <small class="text-danger error" *ngIf="loginForm.get('userEmail').hasError(validation.type) && (loginForm.get('userEmail').dirty || loginForm.get('userEmail').touched || isFormSubmitted)">
                                         {{validation.message}}
                                 </small>
                             </div>
-                    </div>
-                    <div class="form-group">
                         <label class="fw-bold">
-                            Password
+                            Email
                             <span class="mandatory"> *</span>
                         </label>
-                        <input type="password"
+                    </div>
+                    <div class="form-floating">
+                      <input type="password"
                             class="form-control"
                             formControlName="password"
                             autocomplete="off"
+                            placeholder="Password"
                             [class.border-danger]="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched || isFormSubmitted)"/>
                             <div *ngFor="let validation of validationMessages.password">
                                 <small class="text-danger error" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched || isFormSubmitted)">
                                         {{validation.message}}
                                 </small>
                             </div>
+                        <label class="fw-bold">
+                            Password
+                            <span class="mandatory"> *</span>
+                        </label>
+                        
                     </div>
                     <button class="btn btn-success d-block mx-auto mb-5 mt-5" (click)="login()">Login</button>
                 </form>
