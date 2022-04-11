@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg  bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">VirtualTrio</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nb" aria-controls="nb" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,7 @@
             <a class="nav-link" routerLink="features" *ngIf="isLoggedIn" routerLinkActive="active">Features</a>
             <a class="nav-link" routerLink="register" *ngIf="!isLoggedIn"routerLinkActive="active">Register</a>
             <a class="nav-link" routerLink="login" *ngIf="!isLoggedIn"routerLinkActive="active">Login</a>
-            <a class="nav-link"  *ngIf="isLoggedIn"routerLinkActive="active" (click)="logOut()">Logout</a>
+            <a class="nav-link out"  *ngIf="isLoggedIn" routerLinkActive="active" (click)="logOut()">Logout</a>
         </div>
       </div>
     </div>

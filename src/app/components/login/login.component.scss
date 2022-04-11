@@ -8,14 +8,18 @@ input[type="number"] {
 }
 
 .section-body{
-    margin:20px;
+    background-color: gray; 
+    height: 689px;
+    width: 100%;
     opacity: 0.7;
 }
 .card{
+    background-color: white;
+    margin-top: 100px;
     padding: 20px;
     height: 60vh;
-    display: flex;
-    box-shadow: 2px 2px 2px black;
+    opacity: 1;
+    box-shadow: 3px 3px 3px black;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;

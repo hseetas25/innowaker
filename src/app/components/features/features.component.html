@@ -10,11 +10,12 @@
         <div>
             <input type="datetime-local" name="dt" id="dt" placeholder="date" ngModel>
             <input type="text" name="id" id="dt" placeholder="date" ngModel hidden>
+            <input type="text" name="userEmail" placeholder="date" ngModel hidden>
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
-<div class="container mt-5">
+<div *ngIf="isLoggedIn" class="container mt-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <div *ngFor="let todo of toDoData">
             <div class="col">

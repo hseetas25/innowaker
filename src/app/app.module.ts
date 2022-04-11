@@ -9,14 +9,14 @@ import { AppComponent } from './navigation-components';
 import { environment } from 'src/environments/environment';
 
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireDatabaseModule }  from '@angular/fire/database';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { HomeComponent } from './components/home/home.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
 import { FeaturesComponent } from './components/features/features.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms'
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,9 +35,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireAuthModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

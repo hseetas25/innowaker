@@ -1,0 +1,18 @@
+.navbar-nav{
+    width: 100%;
+    margin-left: 80%;
+}
+a{
+    color: white;
+}
+.nav-link{
+    color: white;
+    transition: all 0.3s ease 0s;
+}
+.nav-link:hover{
+    color: green ;
+}
+.out:hover{
+    color: red;
+    cursor: pointer;
+}
