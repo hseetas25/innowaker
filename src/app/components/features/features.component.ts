@@ -62,6 +62,9 @@ export class FeaturesComponent implements OnInit {
           data.forEach((data: any) => {
             const userdata: any = data.payload.doc.data();
             this.toDoData.push(userdata);
+            let sec = new Date();
+            console.log(sec);
+            //setInterval(this.sendEmail, 1000);
           });
         } else {
           console.log('No Data');
@@ -73,8 +76,14 @@ export class FeaturesComponent implements OnInit {
     this.toDoData.forEach((data) => {
       const email: string = data.userEmail;
       const date2 = new Date(data.dt.replace('T', ' '));
-      console.log(date2 == new Date());
-      if (date2 == new Date()) {
+      const cur = new Date();
+      if (
+        date2.getFullYear() == cur.getFullYear() &&
+        date2.getMonth() == cur.getMonth() &&
+        date2.getDate() == cur.getDate() &&
+        date2.getHours() == cur.getHours() &&
+        date2.getMinutes() == cur.getMinutes()
+      ) {
         this.fauth.sendPasswordResetEmail(email).then((res) => {
           console.log(res);
         });
