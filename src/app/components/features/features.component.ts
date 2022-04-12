@@ -18,9 +18,12 @@ export class FeaturesComponent implements OnInit {
     this.isLoggedIn = false;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.getAllData();
     this.loggedIn();
+    await this.delay(10000);
+    console.log('Called');
+    this.sendEmail();
   }
 
   async getData(ref) {
@@ -62,9 +65,6 @@ export class FeaturesComponent implements OnInit {
           data.forEach((data: any) => {
             const userdata: any = data.payload.doc.data();
             this.toDoData.push(userdata);
-            let sec = new Date();
-            console.log(sec);
-            //setInterval(this.sendEmail, 1000);
           });
         } else {
           console.log('No Data');
@@ -72,28 +72,35 @@ export class FeaturesComponent implements OnInit {
       });
   }
 
-  sendEmail(): void {
-    this.toDoData.forEach((data) => {
-      const email: string = data.userEmail;
-      const date2 = new Date(data.dt.replace('T', ' '));
-      const cur = new Date();
-      if (
-        date2.getFullYear() == cur.getFullYear() &&
-        date2.getMonth() == cur.getMonth() &&
-        date2.getDate() == cur.getDate() &&
-        date2.getHours() == cur.getHours() &&
-        date2.getMinutes() == cur.getMinutes()
-      ) {
-        this.fauth.sendPasswordResetEmail(email).then((res) => {
-          console.log(res);
-        });
-      }
-    });
+  async sendEmail(): Promise<void> {
+    if (this.toDoData && this.toDoData.length > 0) {
+      this.toDoData.forEach((data) => {
+        const email: string = data.userEmail;
+        const date2 = new Date(data.dt.replace('T', ' '));
+        const cur = new Date();
+        if (
+          date2.getFullYear() == cur.getFullYear() &&
+          date2.getMonth() == cur.getMonth() &&
+          date2.getDate() == cur.getDate() &&
+          date2.getHours() == cur.getHours() &&
+          date2.getMinutes() == cur.getMinutes()
+        ) {
+          this.fauth.sendPasswordResetEmail(email).then((res) => {
+            console.log(res);
+          });
+        }
+      });
+    }
+    await this.delay(50000);
+    this.sendEmail();
   }
 
   loggedIn(): void {
     if (localStorage.getItem('login') == 'success') {
       this.isLoggedIn = true;
     }
+  }
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
